@@ -1,0 +1,74 @@
+generator client {
+  provider = "prisma-client-js"
+  output   = "../generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Template {
+  id             Int             @id @default(autoincrement())
+  emailContent   String          @map("email_content")
+  campaignEmails CampaignEmail[]
+
+  @@map("template")
+}
+
+model Campaign {
+  id             Int             @id @default(autoincrement())
+  name           String
+  description    String?
+  datetimeCreate DateTime        @default(now()) @map("datetime_create")
+  datetimeUpdate DateTime        @default(now()) @updatedAt @map("datetime_update")
+  campaignEmails CampaignEmail[]
+
+  @@map("campaign")
+}
+
+model CampaignEmail {
+  id             Int                 @id @default(autoincrement())
+  templateId     Int?                @map("template_id")
+  subject        String
+  emailContent   String              @map("email_content")
+  schedule       DateTime?
+  datetimeCreate DateTime            @default(now()) @map("datetime_create")
+  datetimeUpdate DateTime            @default(now()) @updatedAt @map("datetime_update")
+  campaignId     Int                 @map("campaign_id")
+  emails         String[]
+  status         CampaignEmailStatus @default(DRAFT)
+  campaign       Campaign            @relation(fields: [campaignId], references: [id])
+  template       Template?           @relation(fields: [templateId], references: [id])
+  logHistories   LogHistory[]
+
+  @@map("campaign_email")
+}
+
+model LogHistory {
+  id              Int                   @id @default(autoincrement())
+  templateId      Int?                  @map("template_id")
+  timeStamp       DateTime              @default(now()) @map("time_stamp")
+  campaignEmailId Int                   @map("campaign_email_id")
+  email           String
+  emailContent    String
+  sendType        CampaignEmailSendType @default(TRIGGER)
+  campaignEmail   CampaignEmail         @relation(fields: [campaignEmailId], references: [id])
+
+  @@map("log_history")
+}
+
+enum CampaignEmailStatus {
+  CANCEL
+  DRAFT
+  SCHEDULE
+  SEND
+  FAIL
+}
+
+enum CampaignEmailSendType {
+  SCHEDULE
+  TRIGGER
+  CANCEL
+  FAIL
+}
