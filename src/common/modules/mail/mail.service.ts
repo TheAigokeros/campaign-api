@@ -3,12 +3,16 @@ import { Injectable } from '@nestjs/common';
 import { UserEmailEntity } from './mail.interface';
 // import { User } from './../user/user.entity';
 
-
 @Injectable()
 export class MailService {
   constructor(private mailerService: MailerService) {}
 
-  async sendUserConfirmation({ to, subject, html, from = '"Developer Team" <support@gmail-jenosize>', }: {
+  async sendUserConfirmation({
+    to,
+    subject,
+    html,
+    from = '"Developer Team" <support@gmail-jenosize>',
+  }: {
     to: string | string[];
     subject: string;
     html: string;
@@ -21,5 +25,4 @@ export class MailService {
       return false;
     }
   }
-  
 }

@@ -9,7 +9,6 @@ export class BasicAuthGuard extends PassportStrategy(BasicStrategy) {
   }
 
   validate(username: string, password: string) {
-    // Replace with real validation
     if (username === 'admin' && password === 'password') {
       return { username };
     }

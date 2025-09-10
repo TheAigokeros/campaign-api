@@ -5,14 +5,14 @@ import { PrismaModule } from '@/common/modules/prisma/prisma.module';
 
 @Global()
 @Module({
-	imports: [PrismaModule],
-	providers: [
-		CampaignEmailRepositoryService,
-		{
-			provide: CampaignEmailRepositoryServiceProvider,
-			useExisting: CampaignEmailRepositoryService,
-		},
-	],
-	exports: [CampaignEmailRepositoryServiceProvider],
+  imports: [PrismaModule],
+  providers: [
+    CampaignEmailRepositoryService,
+    {
+      provide: CampaignEmailRepositoryServiceProvider,
+      useExisting: CampaignEmailRepositoryService,
+    },
+  ],
+  exports: [CampaignEmailRepositoryServiceProvider],
 })
 export class CampaignEmailRepositoryModule {}

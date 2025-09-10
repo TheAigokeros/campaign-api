@@ -1,1 +1,2 @@
-export const CampaignEmailRepositoryServiceProvider = 'CampaignEmailRepositoryServiceProvider';
+export const CampaignEmailRepositoryServiceProvider =
+  'CampaignEmailRepositoryServiceProvider';
