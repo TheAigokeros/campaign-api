@@ -1,7 +1,6 @@
 import { Inject, Injectable, Logger } from '@nestjs/common';
 import { campaignEmailServiceAbstract } from './campaign-email.abstract';
 import {
-  CampaignEmailRepositoryService,
   CampaignEmailRepositoryServiceAbstract,
   CampaignEmailRepositoryServiceProvider,
 } from 'src/repository/campaign-email-repository';

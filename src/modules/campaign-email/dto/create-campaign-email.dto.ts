@@ -4,7 +4,6 @@ import {
   IsEmail,
   IsEnum,
   IsNotEmpty,
-  IsOptional,
   IsString,
 } from 'class-validator';
 import { CampaignEmailStatus } from '@/common/enum/global.enum';

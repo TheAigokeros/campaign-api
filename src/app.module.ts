@@ -10,7 +10,7 @@ import { QueueModule } from './queue/queue.module';
     QueueModule,
     CampaignEmailModule,
     ConfigModule.forRoot({
-      isGlobal: true, // no need to import into other modules
+      isGlobal: true,
     }),
     MailModule,
   ],

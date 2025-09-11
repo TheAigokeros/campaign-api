@@ -9,7 +9,7 @@ import {
   ListCampaignEmailResponseDto,
 } from './dto';
 
-@Controller('campaign')
+@Controller('api/campaign')
 export class CampaignEmailController {
   // @NotRequireAuthorization()
   constructor(private campaignEmailService: CampaignEmailService) {}

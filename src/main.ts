@@ -50,7 +50,7 @@ async function bootstrap() {
   const serverAdapter = new ExpressAdapter();
   serverAdapter.setBasePath('/admin/queues');
 
-  const emailQueue = app.get(getQueueToken('email')); // get your queue from DI
+  const emailQueue = app.get(getQueueToken('email'));
   createBullBoard({
     queues: [new BullAdapter(emailQueue)],
     serverAdapter,

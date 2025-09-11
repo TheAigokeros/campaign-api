@@ -9,7 +9,9 @@ services:
       POSTGRES_DB: campaign
     ports:
       - "5432:5432"
-  
+    volumes:
+      - postgres_data:/var/lib/postgresql/data  # persist data here
+      
   redis:
     image: redis:7-alpine
     container_name: redis
@@ -22,3 +24,7 @@ services:
       timeout: 5s
       retries: 5
     restart: unless-stopped
+
+volumes:
+  postgres_data:
+    driver: local
